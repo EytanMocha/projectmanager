@@ -1,0 +1,21 @@
+<div>
+	<div class="inner-container">
+		<div class="box">
+			<h1>Login</h1>
+			<input type="text" placeholder="Username" ng-model="username" /> <input
+				type="password" placeholder="Password" ng-model="password" />
+				
+			<button ng-click="getuser()">Login</button>
+			<button ng-click="forgetpassword()" id="forgetpassword"> troubles with password?</button>
+		</div>
+		<div class="box" id="passworR" style="display: none;">
+		<label>password recovery</label>
+		<input type="text" placeholder="Username" ng-model="forgotUser" />
+		<button ng-click="userRequst()">send</button>
+		</div>
+		
+	</div>
+</div>
+
+
+

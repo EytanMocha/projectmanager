@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp">
+<head>
+<meta charset="windows-1255">
+<title>Insert title here</title>
+<link rel="stylesheet" href="table.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
+	rel="stylesheet">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans"
+	rel="stylesheet">
+
+</head>
+<body data-ng-controller="mineCtrl">
+	<div class=" eytan">
+		<div>
+			<table>
+				<tr>
+					<td class="dev">
+						<div>
+							<canvas id="canvas" width="75" height="75"
+								style="background-color: #333;"></canvas>
+							<button data-ng-click="logout()" type="button"
+								class="btn btn-warning header">logout</button>
+						</div>
+					</td>
+					<td><i class="fa fa-hand-grab-o td"
+						style="font-size: 48px; color: black;"></i></td>
+				</tr>
+				<tr>
+					<td colspan="2"><table style="text-align: center;">
+							<tr>
+								<td colspan="4"><a href="#!manager"
+									class="manager btn btn-default">ManagerInfo</a> <a
+									href="#!customerdata" class="manager btn btn-default">Customers
+										Management</a> <a href="#!employeedata"
+									class="manager btn btn-default">Employee Management</a> <a
+									href="#!projectdata" class="manager btn btn-default">Project
+										Management</a> <a href="#!Costumer"
+									class="customer btn btn-default">Customer</a> <a
+									href="#!Reportinghour" class="employee btn btn-default">Reporting
+										Hour</a> <a href="#!ActiveProject" class="manager btn btn-default">Active Project</a>
+									<a href="#!Search" class="manager btn btn-default">Search
+										By </a> <a href="#!Settings" class="customer btn btn-default ">Customer
+										Project Hours </a> <a href="#!employeeSeven"
+									class="employee btn btn-default ">Employee Report </a> <a
+									href="#!management" class="manager btn btn-default ">Settings
+								</a></td>
+							</tr>
+						</table></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="container-fluid" data-ng-view></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="footer"><p>created by Eytan Mocha
+							October 2017</p></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+<script> 
+var userid;
+	var app = angular.module("myApp", [ "ngRoute" ]);
+	
+	var userid;
+	app.controller("mineCtrl", function($scope, $location, $interval){
+		 $scope.logout = function(){
+			 if(confirm("are you sure that you want to log out?")==true){
+				
+				 $location.path("/")
+				
+				
+			 } }
+		 
+		 		var tick = function() {
+			    $scope.clock = Date();
+			  }
+			  tick();
+			  $interval(tick, 1000);
+			  var canvas = document.getElementById("canvas");
+			  var ctx = canvas.getContext("2d");
+			  var radius = canvas.height / 2;
+			  ctx.translate(radius, radius);
+			  radius = radius * 0.90
+			  setInterval(drawClock, 1000);
+
+			  function drawClock() {
+			    drawFace(ctx, radius);
+			    drawNumbers(ctx, radius);
+			    drawTime(ctx, radius);
+			  }
+
+			  function drawFace(ctx, radius) {
+			    var grad;
+			    ctx.beginPath();
+			    ctx.arc(0, 0, radius, 0, 2*Math.PI);
+			    ctx.fillStyle = 'white';
+			    ctx.fill();
+			    grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+			    grad.addColorStop(0, '#333');
+			    grad.addColorStop(0.5, 'white');
+			    grad.addColorStop(1, '#333');
+			    ctx.strokeStyle = grad;
+			    ctx.lineWidth = radius*0.1;
+			    ctx.stroke();
+			    ctx.beginPath();
+			    ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+			    ctx.fillStyle = '#333';
+			    ctx.fill();
+			  }
+
+			  function drawNumbers(ctx, radius) {
+			    var ang;
+			    var num;
+			    ctx.font = radius*0.15 + "px arial";
+			    ctx.textBaseline="middle";
+			    ctx.textAlign="center";
+			    for(num = 1; num < 13; num++){
+			      ang = num * Math.PI / 6;
+			      ctx.rotate(ang);
+			      ctx.translate(0, -radius*0.85);
+			      ctx.rotate(-ang);
+			      ctx.fillText(num.toString(), 0, 0);
+			      ctx.rotate(ang);
+			      ctx.translate(0, radius*0.85);
+			      ctx.rotate(-ang);
+			    }
+			  }
+
+			  function drawTime(ctx, radius){
+			      var now = new Date();
+			      var hour = now.getHours();
+			      var minute = now.getMinutes();
+			      var second = now.getSeconds();
+			      //hour
+			      hour=hour%12;
+			      hour=(hour*Math.PI/6)+
+			      (minute*Math.PI/(6*60))+
+			      (second*Math.PI/(360*60));
+			      drawHand(ctx, hour, radius*0.5, radius*0.07);
+			      //minute
+			      minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+			      drawHand(ctx, minute, radius*0.8, radius*0.07);
+			      // second
+			      second=(second*Math.PI/30);
+			      drawHand(ctx, second, radius*0.9, radius*0.02);
+			  }
+
+			  function drawHand(ctx, pos, length, width) {
+			      ctx.beginPath();
+			      ctx.lineWidth = width;
+			      ctx.lineCap = "round";
+			      ctx.moveTo(0,0);
+			      ctx.rotate(pos);
+			      ctx.lineTo(0, -length);
+			      ctx.stroke();
+			      ctx.rotate(-pos);
+			  }
+	});
+</script>
+<script type="text/javascript" src="./login/login.ctrl.js"></script>
+<script type="text/javascript" src="./login/login.route.js"></script>
+<script type="text/javascript" src="./employee/employee.ctrl.js"></script>
+<script type="text/javascript" src="./employee/employee.route.js"></script>
+<script type="text/javascript" src="./customer/customer.ctrl.js"></script>
+<script type="text/javascript" src="./customer/customer.route.js"></script>
+<script type="text/javascript" src="./activeP/activeProject.ctrl.js"></script>
+<script type="text/javascript" src="./activeP/activeProject.route.js"></script>
+<script type="text/javascript" src="./hourreport/hourReport.ctrl.js"></script>
+<script type="text/javascript" src="./hourreport/hourReport.route.js"></script>
+<script type="text/javascript"
+	src="./customerReport/customerReport.ctrl.js"></script>
+<script type="text/javascript"
+	src="./customerReport/customerReport.route.js"></script>
+<script type="text/javascript" src="./manager/manager.ctrl.js"></script>
+<script type="text/javascript" src="./manager/manager.route.js"></script>
+<script type="text/javascript" src="./project/project.ctrl.js"></script>
+<script type="text/javascript" src="./project/project.route.js"></script>
+<script type="text/javascript" src="./systemSearch/systemSearch.ctrl.js"></script>
+<script type="text/javascript"
+	src="./systemSearch/systemSearch.route.js"></script>
+<script type="text/javascript"
+	src="./customerHours/customerHours.ctrl.js"></script>
+<script type="text/javascript"
+	src="./customerHours/customerHours.route.js"></script>
+<script type="text/javascript"
+	src="./employeeReport/employeeReport.ctrl.js"></script>
+<script type="text/javascript"
+	src="./employeeReport/employeeHours.route.js"></script>
+<script type="text/javascript"
+	src="systemManagement/systemManagement.ctrl.js"></script>
+<script type="text/javascript"
+	src="systemManagement/systemManagement.route.js"></script>
+<link rel="stylesheet" href="./login/style.css">
+</html>

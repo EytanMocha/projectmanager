@@ -1,0 +1,193 @@
+
+<div>
+	
+
+  <!-- Modal -->
+  <div class="modal fade" id="thirdModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">hire employee</h4>
+        </div>
+        <div class="modal-body">
+      		<table>
+      		
+
+				<tr>
+					<td><strong>first name :</strong></td>
+					<td><input type="text" placeholder="company name"
+						data-ng-model="tempForm.firstname" required></td>
+
+				</tr>
+				<tr>
+					<td><strong>last name :</strong></td>
+					<td><input type="text" placeholder="company name"
+						data-ng-model="tempForm.lastname" required></td>
+
+				</tr>
+				<tr>
+					<td><strong>email :</strong></td>
+					<td><input type="text" placeholder="company number"
+						data-ng-model="tempForm.email" required></td>
+				</tr>
+				<tr>
+					<td><strong> phone :</strong></td>
+					<td><input type="text" placeholder="contact"
+						data-ng-model="tempForm.phone" required /></td>
+				</tr>
+
+				<tr>
+					<td><strong>user name :</strong></td>
+					<td><input type="text" data-ng-model="tempForm.username"
+						required></td>
+				</tr>
+				<tr>
+					<td><strong> password :</strong></td>
+					<td><input type="text" data-ng-model="tempForm.passsword"
+						required /></td>
+				</tr>
+
+				<tr>
+					<td>
+						<button type="button" class="btn btn-success"
+							data-ng-click="Savedata($index)">create</button>
+
+
+					</td>
+				</tr>
+			</table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal fade" id="empModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">update employees</h4>
+        </div>
+        <div class="modal-body">
+      		<table>
+				
+				<tr>
+					<td><strong>first name :</strong></td>
+					<td><input type="text" placeholder="company name"
+						data-ng-model="tempForm.firstname" required></td>
+
+				</tr>
+				<tr>
+					<td><strong>last name :</strong></td>
+					<td><input type="text" placeholder="company name"
+						data-ng-model="tempForm.lastname" required></td>
+
+				</tr>
+				<tr>
+					<td><strong>email :</strong></td>
+					<td><input type="text" placeholder="company number"
+						data-ng-model="tempForm.email" required></td>
+				</tr>
+				<tr>
+					<td><strong> phone :</strong></td>
+					<td><input type="text" placeholder="contact"
+						data-ng-model="tempForm.phone" required /></td>
+				</tr>
+
+				
+				<tr>
+					<td>
+						<button type="button" class="btn btn-success"
+							data-ng-click="Savedata($index)">update</button>
+
+
+					</td>
+				</tr>
+			</table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+	
+
+
+
+	<div>
+		<div data-ng-model="search"
+			style="float: left; width: 100%; text-align: left;">
+			<label for="item"><span></span> Search :</label> <input name="names"
+				data-ng-model="search" /> <br>
+		</div>
+		<table class="table table-hover text-centered" border="1">
+			<tr>
+
+				<th>first name</th>
+				<th>last name</th>
+				<th>email</th>
+				<th>phone</th>
+				<th><button type="button" class="btn btn-info btn" data-toggle="modal" data-target="#thirdModal">New Employee</button></th>
+
+			</tr>
+			<tr id="{{$index+1}}" data-ng-repeat="x in employee  | filter:search">
+
+				<td>{{ x.firstname }}</td>
+				<td>{{ x.lastname }}</td>
+				<td>{{ x.email }}</td>
+				<td>{{ x.phone }}</td>
+
+				<td>
+					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#empModal" data-ng-click="editRow($index)"><i class="glyphicon glyphicon-pencil"> </i></button>
+					<button type="button" class="btn btn-info" data-ng-click="RemoveRow($index)"><i class="glyphicon glyphicon-trash"> </i></button>
+				</td>
+			</tr>
+		</table>
+		
+	
+		<table>
+			<thead>connections</thead>
+			<tr>
+				<td><strong>employee :</strong></td>
+				<td><select data-ng-model="pro"><option
+							 data-ng-repeat="x in employee" value="{{x.id}}">{{
+							x.firstname }}</option></select></td>
+				<td><strong>project :</strong></td>
+				<td><select data-ng-model="emp"><option
+							value="{{x.id}}" data-ng-repeat="x in project" value="{{x.id}}" >{{
+							x.projectname }}</option></select></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<button data-ng-click="Zzzz()">create connection</button>
+				</td>
+			</tr>
+		</table>
+		<table border="1"><tr>
+
+				<th>employee</th>
+				<th>project</th>
+				
+
+			</tr>
+			<tr id="{{$index+1}}" data-ng-repeat="x in emptopro  | filter:search">
+
+				<td>{{ x.employee.firstname }}</td>
+				<td>{{ x.project.projectname }}</td>
+				
+</tr>
+				</table>
+	</div>
+	
+
+</div>

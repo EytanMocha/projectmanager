@@ -1,0 +1,31 @@
+
+<div >
+			
+	<h3><b>Last Week Report</b></h3>
+	<div style="float: left;" >
+		<label for="item"><span></span> Search :</label> <input name="names"
+			data-ng-model="search" />
+	</div>
+	<div>
+		<table   class="table table-hover text-centered" border="1">
+			<tr>
+				<th> full name</th>
+				<th> project</th>
+				<th> Date</th>
+				<th> start hour </th>
+				<th> end hour </th>
+				<th> description</th>
+			</tr>
+			<tr data-ng-repeat="x in emploReport | filter:search">
+
+				<td>{{ x.employee.firstname + "&nbsp&nbsp"+ x.employee.lastname}}</td>
+				
+				<td>{{ x.project.projectname }}</td>
+				<td >{{ x.date }}</td>
+				<td >{{ x.starthour }}</td>
+				<td >{{ x.endhour }}</td>
+				<td>{{x.description}}</td>
+				
+			</tr>
+		</table>
+	</div></div>

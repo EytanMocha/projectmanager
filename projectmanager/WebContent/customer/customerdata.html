@@ -1,0 +1,173 @@
+
+
+<div>
+
+	<h2>customers Managements</h2>
+
+
+	<div>
+		<div style="float: left;" >
+			<label for="item"><span></span> Search :</label> <input name="names"
+				data-ng-model="search" /> <br>
+		</div>
+		<table class="table table-hover text-centered" border="1">
+			<tr>
+
+				<th>company name</th>
+				<th>company number</th>
+				<th>contact</th>
+				<th>phone</th>
+				<th>email</th>
+				<th><button type="button" class="btn btn-info btn" data-toggle="modal" data-target="#fourModal">Create Customer</button></th>
+
+			</tr>
+			<tr id="{{$index+1}}" data-ng-repeat="x in customer | filter:search">
+				<td>{{ x.companyname }}</td>
+				<td>{{ x.companynumber }}</td>
+				<td>{{ x.contact }}</td>
+				<td>{{ x.phone }}</td>
+				<td>{{ x.email }}</td>
+				
+
+				<td>
+					<button type="button"  class="btn btn-info" data-toggle="modal" data-target="#updateModal" data-ng-click="editRow($index)" value="{{x.id}}"><i class="glyphicon glyphicon-pencil"> </i></button>
+					<button type="button" class="btn btn-info" data-ng-click="RemoveRow($index)"><i class="glyphicon glyphicon-trash"> </i></button>
+				</td>
+
+			</tr>
+
+		</table>
+		
+		
+		<br>
+	</div>
+	
+
+ 
+  <div class="modal fade" id="fourModal" role="dialog">
+    <div class="modal-dialog">
+    
+      
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Customers management</h4>
+        </div>
+        <div class="modal-body">
+       <form name="commentForm">
+			<table>
+			
+
+				<tr>
+					<td><strong>company name :</strong></td>
+					<td><input type="text" placeholder="company name"
+						data-ng-model="tempForm.companyname" required="required"></td>
+
+				</tr>
+				<tr>
+					<td><strong>company number :</strong></td>
+					<td><input type="text" placeholder="company number"
+						data-ng-model="tempForm.companynumber" required="required"></td>
+				</tr>
+				<tr>
+					<td><strong>contact :</strong></td>
+					<td><input type="text" placeholder="contact"
+						data-ng-model="tempForm.contact" required /></td>
+				</tr>
+				<tr>
+					<td><strong>phone :</strong></td>
+					<td><input type="text" placeholder="phone"
+						data-ng-model="tempForm.phone" required /></td>
+				</tr>
+				<tr>
+					<td><strong>email :</strong></td>
+					<td><input type="text" placeholder="email"
+						data-ng-model="tempForm.email" required /></td>
+				</tr>
+				<tr>
+					<td><strong>user name :</strong></td>
+					<td><input type="text" placeholder="username"
+						data-ng-model="tempForm.username" required /></td>
+				</tr>
+				<tr>
+					<td><strong>password :</strong></td>
+					<td><input type="text" placeholder="password"
+						data-ng-model="tempForm.password" required /></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button type="button" class="btn btn-success"
+							data-ng-click="Savedata($index)">add/update</button>
+
+					</td>
+				</tr>
+			</table>
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal fade" id="updateModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">update customer</h4>
+        </div>
+        <div class="modal-body">
+       <form name="commentForm">
+			<table>
+			
+				
+
+				<tr>
+					<td><strong>company name :</strong></td>
+					<td><input type="text" placeholder="company name"
+						data-ng-model="tempForm.companyname" required></td>
+
+				</tr>
+				<tr>
+					<td><strong>company number :</strong></td>
+					<td><input type="text" placeholder="company number"
+						data-ng-model="tempForm.companynumber" required></td>
+				</tr>
+				<tr>
+					<td><strong>contact :</strong></td>
+					<td><input type="text" placeholder="contact"
+						data-ng-model="tempForm.contact" required /></td>
+				</tr>
+				<tr>
+					<td><strong>phone :</strong></td>
+					<td><input type="text" placeholder="phone"
+						data-ng-model="tempForm.phone" required /></td>
+				</tr>
+				<tr>
+					<td><strong>email :</strong></td>
+					<td><input type="text" placeholder="email"
+						data-ng-model="tempForm.email" required /></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2">
+						<button type="button" class="btn btn-success"
+							data-ng-click="Savedata($index)">add/update</button>
+
+					</td>
+				</tr>
+			</table>
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+	</div>

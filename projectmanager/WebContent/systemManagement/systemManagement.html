@@ -1,0 +1,35 @@
+
+	<div style="padding-left: 15px;">
+	<h2><b>Setting work hours</b></h2>
+	<form id="systemForm">
+		<a style="font-size: 100%"><b>Hours of Work:</b></a><br><br>
+		
+		<select id="StartTime"> </select> <br>
+		
+		<select id="EndTime"></select> <br>
+
+		<button class="btn btn-success" data-ng-click="setTime()">send</button>
+	</form>
+	
+</div>
+	
+	
+	<div >
+	<h2><b>Setting work days</b></h2>
+			<input type=checkbox id="Sunday" data-ng-true-value="'0'"  data-ng-false-value="'7'"><b>Sunday</b><br>     
+			<input type=checkbox id="Monday" data-ng-true-value="'1'"  data-ng-false-value="'7'"><b>Monday</b><br>
+			<input type=checkbox id="Tuesday" data-ng-true-value="'2'"  data-ng-false-value="'7'"><b>Tuesday</b><br>
+			<input type=checkbox id="Wednesday" data-ng-true-value="'3'"  data-ng-false-value="'7'"><b>Wednesday</b><br>
+			<input type=checkbox id="Thursday" data-ng-true-value="'4'"  data-ng-false-value="'7'"><b>Thursday</b><br>
+			<input type=checkbox  id="Friday" data-ng-true-value="'5'"  data-ng-false-value="'7'"><b>Friday</b><br>
+			<input type=checkbox  id="Saturday"  data-ng-true-value="'6'"  data-ng-false-value="'7'"><b>Saturday</b><br>
+			
+			<div style="text-align: center;">
+				<button data-ng-click="SendDays()" type="submit" class="btn btn-primary">
+				<i class="glyphicon glyphicon-send"></i><a>&nbsp;</a> Set Days</button>
+			</div>
+		
+		</div>
+
+	
+	

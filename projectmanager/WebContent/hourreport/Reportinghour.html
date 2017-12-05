@@ -1,0 +1,112 @@
+
+<div >
+<h3>Time Clock</h3>
+
+	<div style="float: left;" class="form-group">
+		<label for="item"><span></span> Search :</label> <input name="names"
+			data-ng-model="search" />
+	</div>
+	<div>
+	<button type="button" class="btn btn-info btn" data-toggle="modal" data-target="#secondModal">report Hours</button>
+		<table  class="table table-hover text-centered" border="1">
+			<tr>
+
+				<th>&nbsp Name</th>
+				<th>&nbsp Project</th>
+				<th>&nbsp Date</th>
+				<th>&nbsp Start Hour</th>
+				<th>&nbsp End Hour</th>
+				<th>&nbsp Description</th>
+			
+
+			</tr>
+			<tr data-ng-repeat="x in Reporting | filter:search">
+
+				<td>{{ x.employee.firstname }}</td>
+				<td>{{ x.project.projectname }}</td>
+				<td >{{ x.date }}</td>
+				<td >{{ x.starthour }}</td>
+				<td >{{ x.endhour }}</td>
+				<td>{{x.description}}</td>
+				<td>
+				
+					
+				</td>
+
+
+			</tr>
+		</table>
+		
+		
+	</div>
+	
+
+  <!-- Modal -->
+  <div class="modal fade" id="secondModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">time clock</h4>
+        </div>
+        <div class="modal-body">
+       <form name="commentForm">
+			<table>
+				
+				<tr>
+					<td><strong>project :</strong></td>
+					<td><select data-ng-model="tempForm.project"><option
+								 data-ng-repeat="x in list" value="{{x.project.id}}">{{
+								x.project.projectname }}</option></select></td>
+
+				</tr>
+				<tr>
+					<td><strong>Date :</strong></td>
+					<td><input id="datepic"
+						data-ng-model="tempForm.date" required></td>
+				</tr>
+				<tr>
+					<td><strong>Start Hour :</strong></td>
+					<td><select data-ng-model="startHour" id="startHour"> </select></td>
+
+				</tr>
+				
+				<tr>
+					<td><strong>End  Hour :</strong></td>
+					<td><select data-ng-model="endHour" id="endHour"></select></td>
+
+				</tr>
+				
+				
+				
+				<tr>
+					<td><strong>description :</strong></td>
+					<td><input type="text" 
+						data-ng-model="tempForm.description" required /></td>
+				</tr>
+
+				<tr>
+					<td colspan="2">
+						<button type="button" class="btn btn-success"
+							data-ng-click="Savedata(index)">save</button>
+
+					</td>
+				</tr>
+			</table>
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+	
+	
+	
+	
+
+</div>

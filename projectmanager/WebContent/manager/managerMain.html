@@ -1,0 +1,87 @@
+<div>
+	<form>
+		Projects: <input type="radio" value="Proj" data-ng-model="myVar" > active
+		customers: <input type="radio" value="cust" data-ng-model="myVar"> about
+		to finish projects: <input type="radio" value="finish"data-ng-model="myVar">
+	</form>
+	<div data-ng-switch="myVar">
+  
+	<div data-ng-switch-default="Proj">
+		<table  class="table table-hover text-centered" border="1">
+
+				<tr>
+
+					<th>project</th>
+					<th>customer</th>
+					<th>customer project manager</th>
+					<th>project manager email</th>
+					<th>start date</th>
+					<th>end date</th>
+					<th>project manager phone</th>
+				</tr>
+				<tr data-ng-repeat="x in allproject | filter:search">
+
+					<td>{{ x.projectname }}</td>
+					<td>{{ x.customer.companyname}}</td>
+					<td>{{ x.customerprojectmanager }}</td>
+					<td>{{ x.projectmanageremail }}</td>
+					<td>{{ x.startdate|date:'mediumDate' }}</td>
+					<td>{{ x.enddate|date:'mediumDate' }}</td>
+					<td>{{ x.projectmanagerephone }}</td>
+
+				</tr>
+		</table>
+	</div>
+	<div data-ng-switch-when="cust">
+		<table  class="table table-hover text-centered" border="1">
+
+			<tr>
+
+				<th>company name</th>
+				<th>company number</th>
+				<th>contact</th>
+				<th>phone</th>
+				<th>email</th>
+				<th>active</th>
+			</tr>
+			<tr data-ng-repeat="x in activecustomer | filter:search">
+
+				<td>{{ x.companyname }}</td>
+				<td>{{ x.companynumber }}</td>
+				<td>{{ x.contact }}</td>
+				<td>{{ x.phone }}</td>
+				<td>{{ x.email }}</td>
+				<td>{{ x.isActive }}</td>
+
+			</tr>
+		</table>
+	</div>
+	<div data-ng-switch-when="finish">
+		<table  class="table table-hover text-centered" border="1">
+			<tr>
+
+				<th>project name</th>
+				<th>customer</th>
+				<th>customer project manager</th>
+				<th>project manager email</th>
+				<th>start date</th>
+				<th>end date</th>
+				<th>project manager phone</th>
+			</tr>
+			<tr data-ng-repeat="x in projectsends | filter:search">
+
+				<td>{{ x.projectname }}</td>
+				<td>{{ x.customer.companyname}}</td>
+				<td>{{ x.customerprojectmanager }}</td>
+				<td>{{ x.projectmanageremail }}</td>
+				<td>{{ x.startdate }}</td>
+				<td>{{ x.enddate }}</td>
+				<td>{{ x.projectmanagerephone }}</td>
+
+			</tr>
+		</table>
+	</div>
+
+</div>
+
+</div>

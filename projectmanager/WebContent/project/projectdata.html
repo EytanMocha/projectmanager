@@ -1,0 +1,127 @@
+
+<div>
+	<h3>
+	Project Management
+	
+	</h3>
+
+
+
+	<div>
+		<div style="float: left;">
+			<label for="item"><span></span> Search :</label> <input name="names"
+				data-ng-model="search" /> <br>
+		</div>
+		
+		
+	<div class="container-fluid">
+		<table class="table table-hover text-centered" border="1">
+			<tr>
+
+				<th>Company Name</th>
+				<th>Customer</th>
+
+				<th>C.P Manager</th>
+				<th>P.M E-mail</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>P.M Phone</th>
+				<th><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Create Project</button></th>
+			</tr>
+			<tr data-ng-repeat="x in allproject | filter:search">
+
+				<td>{{ x.projectname }}</td>
+				<td>{{ x.customer.companyname }}</td>
+				<td>{{ x.customerprojectmanager }}</td>
+				<td>{{ x.projectmanageremail }}</td>
+				<td >{{ x.startdate }}</td>
+				<td > {{ x.enddate }}</td>
+				<td>{{ x.projectmanagerephone }}</td>
+				<td>
+				
+					<button type="button"  class="btn btn-info" data-toggle="modal" data-target="#myModal" data-ng-click="editRow($index)"><i class="glyphicon glyphicon-pencil"> </i></button>
+					<button type="button" class="btn btn-info" data-ng-click="RemoveRow($index)"><i class="glyphicon glyphicon-trash"> </i></button>
+					
+
+				</td>
+
+			</tr>
+
+		</table>
+		</div>
+		
+		
+	</div>
+	
+	 <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">create project</h4>
+        </div>
+        <div class="modal-body">
+       <form name="commentForm">
+			<table>
+				<tr>
+					<td><strong>project name :</strong></td>
+					<td><input type="text" placeholder="project name"
+						data-ng-model="tempForm.projectname" required></td>
+
+				</tr>
+				<tr>
+					<td><strong>customer :</strong></td>
+					<td><select ng-model="tempForm.customer"><option
+								value="{{x.customer.id}}" data-ng-repeat="x in allproject">{{
+								x.customer.companyname }}</option></select></td>
+
+				</tr>
+				<tr>
+					<td><strong>customer project manager :</strong></td>
+					<td><input type="text" placeholder="customer project manager"
+						data-ng-model="tempForm.customerprojectmanager" required></td>
+				</tr>
+				<tr>
+					<td><strong>project manager email :</strong></td>
+					<td><input type="text" placeholder="project manager email"
+						data-ng-model="tempForm.projectmanageremail" required /></td>
+				</tr>
+				<tr>
+					<td><strong>start date :</strong></td>
+					<td id="start"><input type="date" placeholder="start date"
+						data-ng-model="tempForm.startdate" required /></td>
+				</tr>
+				<tr>
+					<td><strong>end date :</strong></td>
+					<td><input type="date" placeholder="end date"
+						data-ng-model="tempForm.enddate" required /></td>
+				</tr>
+				<tr>
+					<td><strong>project manager phone :</strong></td>
+					<td><input type="text" placeholder="project manager phone"
+						data-ng-model="tempForm.projectmanagerephone" required /></td>
+				</tr>
+
+				<tr>
+					<td>
+						<button type="button" class="btn btn-success"
+							data-ng-click="Savedata(index)">Save</button>
+
+					</td>
+				</tr>
+			</table>
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+	
+
+
+</div>
